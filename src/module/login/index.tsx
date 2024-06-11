@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
+import request from "../../common/request";
 import * as style from "./style.module.less";
 
 const Login: React.FC = () => {
@@ -16,7 +17,21 @@ const Login: React.FC = () => {
     <>
       <div>
         <div className={types.formMain}>Login Title from style</div>
-        <button onClick={throwErr}>wakk {name}</button>
+        <button onClick={throwErr}>wakk {name}</button>&emsp;
+        <button
+          onClick={() => {
+            request
+              .get("/user?ID=12345")
+              .then((res) => {
+                console.log("res:", res);
+              })
+              .catch((err) => {
+                console.log("err:", err);
+              });
+          }}
+        >
+          axios
+        </button>
       </div>
     </>
   );
